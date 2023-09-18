@@ -54,7 +54,7 @@ class Script:
         while count < length:  # <3>
             current = s.read(1)  # <4>
             count += 1
-            current_byte = current[0]  # <5>
+            current_byte = current[0]  # <5> converts byte to int
             if current_byte >= 1 and current_byte <= 75:  # <6>
                 n = current_byte
                 cmds.append(s.read(n))
