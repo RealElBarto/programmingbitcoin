@@ -1,0 +1,105 @@
+tx.py:
+    class TxFetcher:
+        def get_url(cls, testnet=False):
+        def fetch(cls, tx_id, testnet=False, fresh=False):
+        def load_cache(cls, filename):
+        def dump_cache(cls, filename):
+    
+    class Tx:
+        def __init__(self, version, tx_ins, tx_outs, locktime, testnet=False):
+        def id(self):
+        def hash(self):
+        def parse(cls, s, testnet=False):
+        def serialize(self):
+        def fee(self):
+        def sig_hash(self, input_index):
+        def verify_input(self, input_index):
+        def verify(self):
+        def sign_input(self, input_index, private_key):
+
+    class TxIn:
+        def __init__(self, prev_tx, prev_index, script_sig=None, sequence=0xffffffff):
+        def parse(cls, s):
+        def serialize(self):
+        def fetch_tx(self, testnet=False):
+        def value(self, testnet=False):
+        def script_pubkey(self, testnet=False):
+    
+    class TxOut:
+        def __init__(self, amount, script_pubkey):
+        def parse(cls, s):
+        def serialize(self):
+
+ecc.py:
+    class FieldElement:
+        def __init__(self, num, prime):
+        def __eq__(self, other):
+        def __ne__(self, other):
+        def __add__(self, other):
+        def __sub__(self, other):
+        def __mul__(self, other):
+        def __pow__(self, exponent):
+        def __truediv__(self, other):
+        def __rmul__(self, coefficient):
+    
+    class Point:
+        def __init__(self, x, y, a, b):
+        def __eq__(self, other):
+        def __neq__(self, other):
+        def __add__(self, other):
+        def __rmul__(self, coefficient):
+    
+    class S256Field(FieldElement):
+        def __init__(self, num, prime=None):
+        def __repr__(self):
+        def sqrt(self):
+    
+    class S256Point(Point):
+        def __init__(self, x, y, a=None, b=None):
+        def __rmul__(self, coefficient):
+        def verify(self, z, sig):
+        def sec(self, compressed=True):
+        def hash160(self, compressed=True):
+        def address(self, compressed=True, testnet=False):
+        def parse(self, sec_bin):
+
+    class Signature:
+        def __init__(self, r, s):
+        def der(self):
+        def parse(cls, signature_bin):
+    
+    class PrivateKey:
+        def __init__(self, secret):
+        def hex(self):
+        def sign(self, z):
+        def deterministic_k(self, z):
+        def wif(self, compressed=True, testnet=False):
+    
+script.py:
+    def p2pkh_script(h160):
+
+    class Script():
+        def __init__(self, cmds=None):
+        def parse(cls, s):
+        def raw_serialize(self):
+        def serialize(self):
+        def evaluate(self, z):
+    
+helper.py
+    def hash160(s):
+    def hash256(s):
+    def encode_base58(s):
+    def encode_base58_checksum(s):
+    def decode_base58(s):
+    def little_endian_to_int(b):
+    def int_to_little_endian(n, length):
+    def read_varint(s):
+    def encode_varint(i):
+
+
+
+
+
+
+
+
