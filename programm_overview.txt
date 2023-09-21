@@ -84,6 +84,9 @@ script.py:
         def raw_serialize(self):
         def serialize(self):
         def evaluate(self, z):
+        def is_p2pkh_script_pubkey(self):
+        def is_p2sh_script_pubkey(self):
+
     
 helper.py
     def hash160(s):
@@ -95,6 +98,9 @@ helper.py
     def int_to_little_endian(n, length):
     def read_varint(s):
     def encode_varint(i):
+    def h160_to_p2pkh_address(h160, testnet=False):
+    def h160_to_p2sh_address(h160, testnet=False):
+
 
 
 

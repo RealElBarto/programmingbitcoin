@@ -1,4 +1,5 @@
 from unittest import TestCase, TestSuite, TextTestRunner
+from Crypto.Hash import RIPEMD160
 
 import hashlib
 
@@ -16,8 +17,10 @@ def run(test):
 
 
 def hash160(s):
-    '''sha256 followed by ripemd160'''
-    return hashlib.new('ripemd160', hashlib.sha256(s).digest()).digest()
+     # a sha256 followed by ripemd160
+    hash160 = RIPEMD160.new()
+    hash160.update(hashlib.sha256(s).digest())
+    return hash160.digest()
 
 
 def hash256(s):
@@ -105,15 +108,24 @@ def encode_varint(i):
 def h160_to_p2pkh_address(h160, testnet=False):
     '''Takes a byte sequence hash160 and returns a p2pkh address string'''
     # p2pkh has a prefix of b'\x00' for mainnet, b'\x6f' for testnet
+    if testnet:
+        prefix = b'\x6f'
+    else:
+        prefix = b'\x00'
     # use encode_base58_checksum to get the address
-    raise NotImplementedError
+    address = encode_base58_checksum(prefix + h160)
+    return address
 
 
 def h160_to_p2sh_address(h160, testnet=False):
     '''Takes a byte sequence hash160 and returns a p2sh address string'''
     # p2sh has a prefix of b'\x05' for mainnet, b'\xc4' for testnet
-    # use encode_base58_checksum to get the address
-    raise NotImplementedError
+    if testnet:
+        prefix = b'\xc4'
+    else:
+        prefix = b'\x05'
+    address = encode_base58_checksum(prefix + h160)
+    return address
 
 
 class HelperTest(TestCase):
