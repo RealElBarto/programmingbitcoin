@@ -16,6 +16,8 @@ tx.py:
         def verify_input(self, input_index):
         def verify(self):
         def sign_input(self, input_index, private_key):
+        def is_coinbase(self):
+        def coinbase_height(self):
 
     class TxIn:
         def __init__(self, prev_tx, prev_index, script_sig=None, sequence=0xffffffff):
@@ -100,6 +102,24 @@ helper.py
     def encode_varint(i):
     def h160_to_p2pkh_address(h160, testnet=False):
     def h160_to_p2sh_address(h160, testnet=False):
+    def bits_to_target(bits):
+    def target_to_bits(target):
+    def calculate_new_bits(previous_bits, time_differential):-
+
+
+block.py
+    def __init__(self, version, prev_block, merkle_root, timestamp, bits, nonce):
+    def parse(cls, s):
+    def serialize(self):
+    def hash(self):
+    def bip9(self):
+    def bip91(self):
+    def bip141(self):
+    def target(self):
+    def difficulty(self):
+    def check_pow(self):
+
+
 
 
 
