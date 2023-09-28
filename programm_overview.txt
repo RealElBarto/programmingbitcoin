@@ -110,6 +110,7 @@ helper.py
     def merkle_root(hashes):
     def bit_field_to_bytes(bit_field):
     def bytes_to_bit_field(some_bytes):
+    def murmur3(data, seed=0):
 
 
 block.py
@@ -174,6 +175,12 @@ network.py
         def send(self, message):
         def read(self):
         def wait_for(self, *message_classes):
+    
+    class GetDataMessage:
+        def __init__(self):
+        def add_data(self, data_type, identifier):
+        def serialize(self):
+        
 
 merkleblock.py
     class MerkleTree:
@@ -198,8 +205,12 @@ merkleblock.py
         def is_valid(self):
 
 
-
-
+bloomfilter.py
+    class BloomFilter:
+        def __init__(self, size, function_count, tweak):
+        def add(self, item):
+        def filter_bytes(self):
+        def filterload(self, flag=1):
 
 
 
