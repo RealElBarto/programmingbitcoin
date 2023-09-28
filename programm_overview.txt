@@ -108,18 +108,66 @@ helper.py
 
 
 block.py
-    def __init__(self, version, prev_block, merkle_root, timestamp, bits, nonce):
-    def parse(cls, s):
-    def serialize(self):
-    def hash(self):
-    def bip9(self):
-    def bip91(self):
-    def bip141(self):
-    def target(self):
-    def difficulty(self):
-    def check_pow(self):
+    class Block:
+        def __init__(self, version, prev_block, merkle_root, timestamp, bits, nonce):
+        def parse(cls, s):
+        def serialize(self):
+        def hash(self):
+        def bip9(self):
+        def bip91(self):
+        def bip141(self):
+        def target(self):
+        def difficulty(self):
+        def check_pow(self):
 
+network.py
+    class NetworkEnvelope:
+        def __init__(self, command, payload, testnet=False):
+        def __repr__(self):
+        def parse(cls, s, testnet=False):
+        def serialize(self):
+        def stream(self):
+    
+    class VersionMessage:
+        def __init__(self, version=70015, services=0, timestamp=None,
+                 receiver_services=0,
+                 receiver_ip=b'\x00\x00\x00\x00', receiver_port=8333,
+                 sender_services=0,
+                 sender_ip=b'\x00\x00\x00\x00', sender_port=8333,
+                 nonce=None, user_agent=b'/programmingbitcoin:0.1/',
+                 latest_block=0, relay=False):
+        def serialize(self):
 
+    class VerAckMessage:
+        def __init__(self):
+        def parse(cls, s):
+        def serialize(self):
+    
+    class PingMessage:
+        def __init__(self, nonce):
+        def parse(cls, s):
+        def serialize(self):
+        
+    class PongMessage:
+        def __init__(self, nonce):
+        def parse(cls, s):
+        def serialize(self):
+        
+    class GetHeadersMessage:
+        def __init__(self, version=70015, num_hashes=1, 
+        start_block=None, end_block=None):
+        def serialize(self):
+    
+    class HeadersMessage:
+        def __init__(self, blocks):
+        def parse(cls, stream):
+    
+    class SimpleNode:
+        def __init__(self, host, port=None, testnet=False, logging=False):
+        def handshake(self):
+        def send(self, message):
+        def read(self):
+        def wait_for(self, *message_classes):
 
 
 
